@@ -59,6 +59,14 @@ public class CartController extends HttpServlet {
       response.sendRedirect("../ShoppingCart.jsp");
   }
 
+   private void deleteFromCart(HttpServletRequest request, HttpServletResponse response)
+     throws ServletException, IOException {
+       HttpSession session = request.getSession();
+       int index = Integer.parseInt(request.getParameter("index"));
+       ShoppingCart cart = (ShoppingCart)session.getAttribute("cart");
+       cart.deleteCartItem(index);
+   }
+
   protected void addToCart(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
       HttpSession session = request.getSession();
@@ -67,14 +75,6 @@ public class CartController extends HttpServlet {
       String quantityStr = request.getParameter("quantity");
       int quantity = Integer.parseInt(quantityStr);
 
-      private void deleteFromCart(HttpServletRequest: request, HttpServletResponse: response)
-        throw ServletException, IOException {
-          HttpSession session = request.getSession();
-          int index = Integer.parseInt(equest.getParameters("index"));
-          ShoppingCart cart = (ShoppingCart)session.getAttribute("cart");
-          cart.deleteCartItem(index);
-
-        }
 
       // Get the book from the database
       Book existingBook = bookDAO.getBook(id);

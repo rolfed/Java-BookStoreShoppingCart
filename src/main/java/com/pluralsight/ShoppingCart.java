@@ -23,11 +23,11 @@ public class ShoppingCart {
  }
 
  public void deleteCartItem(int index) {
-   try {
-     cartItems.remove(index);
-   } catch {
-     e.printStrackTrace();
-   }
+  try {
+   cartItems.remove(index);
+  } catch (IndexOutOfBoundsException e) {
+   e.printStackTrace();
+  }
  }
 
  public CartItem getCartItem(int iItemIndex) {
